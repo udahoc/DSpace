@@ -44,13 +44,14 @@
     <xsl:template match="dri:options">
         <div id="ds-options-wrapper">
             <div id="ds-options">
+                <!-- INICIO COMENTARIO PRODIGIO - HCB - 06.10.2015 - Aqui se le asigna el div o la etiqueta que enmarca todo el body
                 <xsl:if test="not(contains(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI'], 'discover'))">
                     <h1 id="ds-search-option-head" class="ds-option-set-head">
                         <i18n:text>xmlui.dri2xhtml.structural.search</i18n:text>
                     </h1>
                     <div id="ds-search-option" class="ds-option-set">
-                        <!-- The form, complete with a text box and a button, all built from attributes referenced
-                     from under pageMeta. -->
+                         The form, complete with a text box and a button, all built from attributes referenced
+                     from under pageMeta.
                         <form id="ds-search-form" method="post">
                             <xsl:attribute name="action">
                                 <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath']"/>
@@ -113,9 +114,9 @@
                                 </xsl:if>
                             </fieldset>
                         </form>
-                        <!--Only add if the advanced search url is different from the simple search-->
+                        Only add if the advanced search url is different from the simple search
                         <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='advancedURL'] != /dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='simpleURL']">
-                            <!-- The "Advanced search" link, to be perched underneath the search box -->
+                             The "Advanced search" link, to be perched underneath the search box
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
@@ -127,10 +128,10 @@
                     </div>
 
                 </xsl:if>
-                <!-- Once the search box is built, the other parts of the options are added -->
+                 Once the search box is built, the other parts of the options are added 
                 <xsl:apply-templates/>
 
-                <!-- DS-984 Add RSS Links to Options Box -->
+                 DS-984 Add RSS Links to Options Box
                 <xsl:if test="count(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']) != 0">
                     <h1 id="ds-feed-option-head" class="ds-option-set-head">
                         <i18n:text>xmlui.feed.header</i18n:text>
@@ -141,7 +142,7 @@
                         </ul>
                     </div>
                 </xsl:if>
-
+                FIN COMENTARIO PRODIGIO -->    
 
             </div>
         </div>
