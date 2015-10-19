@@ -50,9 +50,8 @@ nav .navbar-toggle, nav .navbar-inverse .navbar-toggle {
 }
 nav .navbar-toggle .icon-bar {
     background-color: #fff;
-} {
-    background-color: #fff;
 }
+
 nav .navbar-toggle:focus, .navbar-toggle:hover , nav .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
     background-color: #ddd;
 }
