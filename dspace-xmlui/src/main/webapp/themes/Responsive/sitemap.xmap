@@ -69,19 +69,22 @@
                  stylesheets end up in the correct order-->
             <map:transform type="IncludePageMeta">
                 <!-- INICIO COMENTARIO PRODIGIO - HCB - 15.10.2015 - CSS tema Prodigio -->
-                <map:parameter name="stylesheet.screen#1" value="lib/css/reset.css"/>
-                <map:parameter name="stylesheet.screen#2" value="lib/css/bootstrap.min.css"/>
-                <map:parameter name="stylesheet.screen#3" value="lib/css/gaia.css"/>
-                <map:parameter name="stylesheet.screen#4" value="lib/css/offcanvas.css"/>
-                <map:parameter name="stylesheet.screen#5" value="lib/css/carousel.css"/>
+                <!--<map:parameter name="stylesheet.screen#1" value="lib/css/reset.css"/>-->
+                <map:parameter name="stylesheet.screen#1" value="lib/css/bootstrap.min.css"/>
+                <map:parameter name="stylesheet.screen#2" value="lib/css/gaia.css"/>
+                <map:parameter name="stylesheet.screen#3" value="lib/css/offcanvas.css"/>
+                <map:parameter name="stylesheet.screen#4" value="lib/css/carousel.css"/>
                 <map:parameter name="theme.path" value="{global:theme-path}"/>
                 <map:parameter name="theme.name" value="{global:theme-path}"/>
                 <map:parameter name="curRequestURI" value="{1}"/>
             </map:transform> 
             <map:transform type="IncludePageMeta">
-                <map:parameter name="javascript#1" value="lib/js/bootstrap.min.js"/>
-                <map:parameter name="javascript#2" value="lib/js/jquery-scrolltofixed-min.js"/>
-                <map:parameter name="javascript#2" value="lib/js/offcanvas.js"/>
+                <map:parameter name="javascript#1" value="lib/js/jquery-1.11.2.min.js"/>
+                <map:parameter name="javascript#2" value="lib/js/bootstrap.min.js"/>
+                <!--<map:parameter name="javascript#3" value="lib/js/jquery-scrolltofixed-min.js"/>-->
+                <map:parameter name="javascript#3" value="lib/js/buscador-fijo.js"/>
+                <map:parameter name="javascript#4" value="lib/js/offcanvas.js"/>
+                <!--<map:parameter name="javascript#6" value="lib/js/jquery-ui.min.js"/>-->
             </map:transform>           
                 <!-- FIN COMENTARIO PRODIGIO -->
                 <!-- INICIO COMENTARIO PRODIGIO - HCB - 15.10.2015 - Configuracion CSS original

@@ -177,6 +177,19 @@
     -->
     <themes>
         <!-- Tema Responsivo creado por Prodigio Consultores - 2015 -->
+        <theme name="Atmire Mirage 2 Theme" regex="community-list" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="discover" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="browse" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="handle" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="profile" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="submissions" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="admin" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="statistics" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="search-filter" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="register" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="password-login" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="submit" path="Mirage2/" />
+        <theme name="Atmire Mirage 2 Theme" regex="contact" path="Mirage2/" />
         <theme name="Prodigio Consultores" regex=".*" path="Responsive/" />
         
         <!-- Example configuration -->
@@ -186,6 +199,9 @@
 
         <!-- Mirage theme, @mire contributed theme, default since DSpace 3.0 -->
         <!-- <theme name="Atmire Mirage Theme" regex=".*" path="Mirage/" /> -->
+
+        <!-- Mirage 2 theme, @mire contributed theme for DSpace 4.0 -->
+        <!-- <theme name="Atmire Mirage 2 Theme" regex=".*" path="Mirage2/" /> -->
 
         <!-- Reference theme, the default Manakin XMLUI layout up to DSpace 1.8 -->
         <!-- <theme name="Default Reference Theme" regex=".*" path="Reference/" /> -->

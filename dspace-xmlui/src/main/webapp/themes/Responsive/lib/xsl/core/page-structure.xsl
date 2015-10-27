@@ -288,7 +288,7 @@
                     <xsl:text>/themes/</xsl:text>
                     <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='theme'][@qualifier='path']"/>
                     <xsl:text>/lib/js/modernizr-1.7.min.js</xsl:text>
-                </xsl:attribute>&#160;</script>
+                </xsl:attribute>&#160;</script> 
 
             <!-- Add the title in -->
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title']" />
@@ -426,12 +426,100 @@
             </div>
         </div>
         FIN COMENTARIO PRODIGIO -->
+        <!-- INICIO COMENTARIO PRODIGIO - HCB - 19.10.2015 - Nuevo Header -->
+        <nav class="navbar-wrapper">
+            <nav class="navbar navbar-fixed-top">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"><xsl:text>&#160;</xsl:text></span>
+                    <span class="icon-bar"><xsl:text>&#160;</xsl:text></span>
+                    <span class="icon-bar"><xsl:text>&#160;</xsl:text></span>
+                  </button>
+                   <a class="navbar-brand" href="index.html">
+                    <img src="themes/Responsive/images/isotipo.png" alt="Ilustración a colores de la antártica"/>
+                      Gaia<span>Antártica</span> <small>Conocimiento y cultura de antártica</small>
+                    </a>     
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="#about">¿Quiénes somos?</a></li>
+                    <li><a href="#ask">Preguntás frecuentes</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
+                  </ul>
+                  <ul class="lang list-inline">
+                    <li class="active"><a href="?locale-attribute=es">Español</a></li>
+                    <li><a href="?locale-attribute=en">English</a></li>
+                  </ul>
+                  <div class="uLogo visible-lg">
+                      <img src="themes/Responsive/images/uLogo.png" alt="Ilustración a colores de la antártica"/>
+                  </div>
+                </div>
+            </nav>
+        </nav>
+        <!-- Main Carousel
+        ================================================== -->
+    <div id="mainCarousel" class="carousel slide" data-ride="carousel">
+        <div class="fixedSearch carousel-caption">
+            <form role="search" action="discover" method="get" onsubmit="javascript:tSubmit(this);">
+                <div id="mainSearch">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" placeholder="Buscar">
+                            <xsl:attribute name="name">
+                                <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='queryField']"/>
+                            </xsl:attribute>
+                        </input>
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-lg">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="/xmlui/discover" class="AdvanceSearch visible-lg">Busqueda avanzada</a>
+                </div>
+            </form> 
+        </div>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                  <img class="first-slide img-responsive" src="themes/Responsive/images/main-gallery/INACH-1.jpg" alt="First slide"/>
+            </div>
+            <div class="item">
+                  <img class="second-slide img-responsive" src="themes/Responsive/images/main-gallery/INACH-2.jpg" alt="Second slide"/>
+            </div>
+            <div class="item">
+                  <img class="third-slide img-responsive" src="themes/Responsive/images/main-gallery/INACH-3.jpg" alt="Second slide"/>
+            </div>
+        </div>
+        <!-- INICIO COMENTARIO PRODIGIO - HCB - 19.10.2015 - Código original Bradcrumb 
+        <section id="breadcrums">
+              <ol class="breadcrumb"> 
+                Usted está aquí: 
+                <li><a href="">Inicio</a></li>
+                 <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+              </ol>
+        </section> -->
+        <section id="breadcrums">
+              <ol class="breadcrumb"> 
+                Usted está aquí: 
+                <xsl:choose>
+                    <xsl:when test="count(/dri:document/dri:meta/dri:pageMeta/dri:trail) = 0">
+                        <li>-</li>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="/dri:document/dri:meta/dri:pageMeta/dri:trail"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+              </ol>
+        </section>
+    </div><!-- / MainCarousel -->
+        <!-- FIN COMENTARIO PRODIGIO -->
     </xsl:template>
 
     <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
         placeholders for header images -->
-    <!-- INICIO COMENTARIO PRODIGIO - HCB - 06.10.2015 - Se elimina el bradcrumb original
-    <xsl:template name="buildTrail">
+        <xsl:template name="buildTrail">
+        <!-- INICIO COMENTARIO PRODIGIO - HCB - 06.10.2015 - Se elimina el bradcrumb original
         <div id="ds-trail-wrapper">
             <ul id="ds-trail">
                 <xsl:choose>
@@ -447,16 +535,19 @@
                 </xsl:choose>
             </ul>
         </div>
-    
+    FIN COMENTARIO PRODIGIO -->
+
     </xsl:template>
 
     <xsl:template match="dri:trail">
+        <!-- INICIO COMENTARIO PRODIGIO - HCB - 06.10.2015 - Se elimina el bradcrumb original
         put an arrow between the parts of the trail
         <xsl:if test="position()>1">
             <li class="ds-trail-arrow">
                 <xsl:text>&#8594;</xsl:text>
             </li>
         </xsl:if>
+        FIN COMENTARIO PRODIGIO -->
         <li>
             <xsl:attribute name="class">
                 <xsl:text>ds-trail-link </xsl:text>
@@ -467,7 +558,7 @@
                     <xsl:text>last-link</xsl:text>
                 </xsl:if>
             </xsl:attribute>
-            Determine whether we are dealing with a link or plain text trail link
+            <!-- Determine whether we are dealing with a link or plain text trail link -->
             <xsl:choose>
                 <xsl:when test="./@target">
                     <a>
@@ -483,7 +574,7 @@
             </xsl:choose>
         </li>
     </xsl:template>
-    FIN COMENTARIO PRODIGIO -->
+
     <xsl:template name="cc-license">
         <xsl:param name="metadataURL"/>
         <xsl:variable name="externalMetadataURL">
@@ -709,117 +800,38 @@
                 <!-- Otherwise use default handling of body -->
                 <xsl:otherwise>
                     <!-- INICIO COMENTARIO PRODIGIO - HCB - 08.10.2015 - Aqui se incluye el código HTML para el body de la home. -->
-                    <nav class="navbar-wrapper">
-                        <nav class="navbar navbar-fixed-top">
-                            <div class="navbar-header">
-                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                              </button>
-                               <a class="navbar-brand" href="index.html">
-                                <img src="themes/Responsive/images/isotipo.png" alt="Ilustración a colores de la antártica"/>
-                                  Gaia<span>Antártica</span> <small>Conocimiento y cultura de antártica</small>
-                                </a>     
-                            </div>
-                            <div id="navbar" class="navbar-collapse collapse">
-                              <ul class="nav navbar-nav">
-                                <li><a href="#about">¿Quiénes somos?</a></li>
-                                <li><a href="#ask">Preguntás frecuentes</a></li>
-                                <li><a href="contact.html">Contacto</a></li>
-                              </ul>
-                              <ul class="lang list-inline">
-                                <li class="active">Español</li>
-                                <li><a href="#contact">English</a></li>
-                              </ul>
-                              <div class="uLogo visible-lg">
-                                  <img src="themes/Responsive/images/uLogo.png" alt="Ilustración a colores de la antártica"/>
-                              </div>
-                            </div>
-                        </nav>
-                    </nav>
-
-                    <!-- Main Carousel
-                    ================================================== -->
-                    <div id="mainCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="fixedSearch carousel-caption">
-                          <form role="search">
-                            <div id="mainSearch">
-                              <div class="input-group">
-                                  <input type="text" class="form-control input-lg" placeholder="Search"/>
-                                  <div class="input-group-btn">
-                                      <button type="submit" class="btn btn-lg">
-                                          <span class="glyphicon glyphicon-search"></span>
-                                      </button>
-                                  </div>
-                              </div>
-                              <a href="" class="AdvanceSearch visible-lg">Busqueda avanzada</a>
-                            </div>
-                          </form> 
-                        </div>
-                          <!-- Indicators -->
-                        <!-- <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol> -->
-                        <div class="carousel-inner" role="listbox">
-                          <div class="item active">
-                            <img class="first-slide img-responsive" src="http://placehold.it/1200x500/" alt="First slide"/>
-                          </div>
-                          <div class="item">
-                            <img class="second-slide img-responsive" src="http://placehold.it/1200x500/" alt="Second slide"/>
-                          </div>
-                          <div class="item">
-                            <img class="third-slide img-responsive" src="http://placehold.it/1200x500/" alt="Third slide"/>
-                          </div>
-                        </div>
-                <!--       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                      </a> -->
-                        <section id="breadcrums">
-                          <ol class="breadcrumb"> 
-                            Usted está aquí: 
-                            <li><a href="">Inicio</a></li>
-                             <li><a href="#">Library</a></li>
-                            <li class="active">Data</li>
-                          </ol>
-                        </section>
-                    </div><!-- /.carousel -->
-
                     <div class="container fill">
                                 <div class="row row-offcanvas row-offcanvas-left">
                                         <aside class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
                                                 <ul class="list-unstyled">
                                                         <h4>Navegar</h4>
-                                                        <li><a href="#" class="active">Fecha de publicación</a></li>
-                                                        <li><a href="#">Autores</a></li>
-                                                        <li><a href="#">Materias</a></li>
+                                                        <li><a href="browse?type=dateissued" class="active">Fecha de publicación</a></li>
+                                                        <li><a href="browse?type=author">Autores</a></li>
+                                                        <li><a href="browse?type=subject">Materias</a></li>
                                                         <li><a href="#">Zonas Geográficas</a></li>
                                                         <li><a href="#">Tipo de documentos</a></li>
                                                 </ul>
 
                                                 <ul class="list-unstyled">
                                                         <h4>Alianzas</h4>
-                                                        <li><a href="#">Instituto Chileno Antártico</a></li>
-                                                        <li><a href="#">Centro de Estudios Hemisféricos y Polares</a></li>
-                                                        <li><a href="#">Universidad Austral de Chile</a></li>
-                                                        <li><a href="#">Universidad de Chile</a></li>
-                                                        <li><a href="#">Universidad de Santiago</a></li>
+                                                        <li><a href="http://www.inach.cl/">Instituto Chileno Antártico</a></li>
+                                                        <li><a href="http://www.hemisfericosypolares.cl/">Centro de Estudios Hemisféricos y Polares</a></li>
+                                                        <li><a href="https://www.uach.cl/">Universidad Austral de Chile</a></li>
+                                                        <li><a href="http://www.uchile.cl/">Universidad de Chile</a></li>
+                                                        <li><a href="http://www.usach.cl/">Universidad de Santiago</a></li>
                                                 </ul>
 
                                                 <ul class="list-unstyled">
                                                 <h4>Sitio de interés</h4>
-                                                <li><a href="#">Instituto Chileno Antártico</a></li>
-                                                <li><a href="#">Universidad Austral de Chile</a></li>
-                                                <li><a href="#">Universidad de Chile</a></li>
-                                                <li><a href="#">Universidad de Santiago</a></li>
+                                                <li><a href="http://www.pangaea.de/">Alfred Wegener Institut</a></li>
+                                                <li><a href="https://www.repository.cam.ac.uk/handle/1810/245019">British Antarctic Survey</a></li>
+                                                <li><a href="http://www.scar.org/">Comité Científico para las Investigaciones Antárticas (SCAR)</a></li>
+                                                <li><a href="http://library.canterbury.ac.nz/ir/repository.php">Gateway Antarctica</a></li>
+                                                <li><a href="http://brage.bibsys.no/xmlui/handle/11250/92941?locale-attribute=en">Norsk Polarinstitutt</a></li>
+                                                <li><a href="https://www.repository.cam.ac.uk/handle/1810/183634">Scott Polar Research Repository</a></li>
+                                                <li><a href="http://www.ats.aq/index_s.htm">Secretaría del Tratado Antártico</a></li>
+                                                <li><a href="http://www.umag.cl/investigacion/dpa/">Dirección de Programas Antárticos (DPA)</a></li>
+                                                <li><a href="http://www.umag.cl/gaiaantartica/">Gaia Antártica: Conocimiento y Cultura Antártica</a></li>
                                                 </ul>
 
                                                 <ul class="list-inline">
@@ -828,8 +840,7 @@
                                                 <li><a class="twitter" href="#">Twitter</a></li>
                                                 <li><a class="youtube" href="#">Youtube</a></li>
                                                 </ul>
-                                          <div class="decoration">
-                                          </div>
+
                                         </aside><!--/.sidebar-offcanvas-->
 
                                         <div class="col-xs-12 col-sm-9 mainContent">
@@ -847,292 +858,316 @@
                                                                 <div role="tabpanel" class="tab-pane fade active in highlight" id="highlight" aria-labelledby="highlight-tab">
                                                                         <div class="row">
                                                                                 <div class="books-zoom col-md-15 col-xs-6">
-                                                                                  <a href="#">
-                                                                                        <img src="http://placehold.it/140x180/" alt="..."/>
+                                                                                  <a href="handle/123456789/80">
+                                                                                        <img src="themes/Responsive/images/portadas_pdf/04.jpg" alt="..."/>
                                                                                         <span>Lorem ipsum dolor sit amet, consect...</span>
                                                                                   </a>
                                                                                 </div>
                                                                                 <div class="books-zoom col-md-15 col-xs-6">
-                                                                                  <a href="#">
-                                                                                        <img src="http://placehold.it/140x180/" alt="..."/>
+                                                                                  <a href="handle/123456789/80">
+                                                                                        <img src="themes/Responsive/images/portadas_pdf/05.jpg" alt="..."/>
                                                                                         <span>Lorem ipsum dolor sit amet, consect...</span>
                                                                                   </a>
                                                                                 </div>                       
                                                                                 <div class="books-zoom col-md-15 col-xs-6">
-                                                                                  <a href="#">
-                                                                                        <img src="http://placehold.it/140x180/" alt="..."/>
+                                                                                  <a href="handle/123456789/80">
+                                                                                        <img src="themes/Responsive/images/portadas_pdf/06.jpg" alt="..."/>
                                                                                         <span>Lorem ipsum dolor sit amet, consect...</span>
                                                                                   </a>
                                                                                 </div>
                                                                                 <div class="books-zoom col-md-15 col-xs-6">
-                                                                                  <a href="#">
-                                                                                        <img src="http://placehold.it/140x180/" alt="..."/>
+                                                                                  <a href="handle/123456789/80">
+                                                                                        <img src="themes/Responsive/images/portadas_pdf/07.jpg" alt="..."/>
                                                                                         <span>Lorem ipsum dolor sit amet, consect...</span>
                                                                                   </a>
                                                                                 </div>
                                                                                 <div class="books-zoom col-md-15 col-xs-6">
-                                                                                  <a href="#">
-                                                                                        <img src="http://placehold.it/140x180/" alt="..."/>
+                                                                                  <a href="handle/123456789/80">
+                                                                                        <img src="themes/Responsive/images/portadas_pdf/08.jpg" alt="..."/>
                                                                                         <span>Lorem ipsum dolor sit amet, consect...</span>
                                                                                   </a>
                                                                                 </div>
                                                                         </div>
                                                                 </div>
 
-                                                                <div role="tabpanel" class="tab-pane fade" id="collections" aria-labelledby="collections-tab">
-                                                                    <div class="row">
-                                                                                <div class="col-sm-6 col-md-3">
-                                                                                  <div class="thumbnail">
-                                                                                        <img src="http://placehold.it/260x200/" alt="..."/>
-                                                                                        <div class="caption">
-                                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                                          <p>Colección: <a href="">umag</a></p>
-                                                                                          <p class="viewed">1500 Visitas</p>
-                                                                                        </div>
-                                                                                  </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6 col-md-3">
-                                                                                  <div class="thumbnail">
-                                                                                        <img src="http://placehold.it/260x200/" alt="..."/>
-                                                                                        <div class="caption">
-                                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                                          <p>Colección: <a href="">umag</a></p>
-                                                                                          <p class="viewed">1500 Visitas</p>
-                                                                                        </div>
-                                                                                  </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6 col-md-3">
-                                                                                  <div class="thumbnail">
-                                                                                        <img src="http://placehold.it/260x200/" alt="..."/>
-                                                                                        <div class="caption">
-                                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                                          <p>Colección: <a href="">umag</a></p>
-                                                                                          <p class="viewed">1500 Visitas</p>
-                                                                                        </div>
-                                                                                  </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6 col-md-3">
-                                                                                  <div class="thumbnail">
-                                                                                        <img src="http://placehold.it/260x200/" alt="..."/>
-                                                                                        <div class="caption">
-                                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                                          <p>Colección: <a href="">umag</a></p>
-                                                                                          <p class="viewed">1500 Visitas</p>
-                                                                                        </div>
-                                                                                  </div>
-                                                                                </div>                    
+                                                                <div role="tabpanel" class="tab-pane fade" id="collections" aria-labelledby="collections-tab"><!--/content-collecciones-->
+                                                                  <div class="row">
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="themes/Responsive/images/colecciones/01.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="handle/123456789/43">Centro de Estudios Hemisféricos y Polares</a></h3>
+                                                                          <!--<p>Colección: <a href="">umag</a></p>-->
+                                                                          <!--<p class="viewed">1500 Visitas</p> -->
+                                                                        </div>
+                                                                      </div>
                                                                     </div>
-                                                                </div>
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="themes/Responsive/images/colecciones/02.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="handle/123456789/23">Instituto Antártico Chileno</a></h3>
+                                                                          <!--<p>Colección: <a href="">umag</a></p>-->
+                                                                          <!--<p class="viewed">1500 Visitas</p> -->
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="themes/Responsive/images/colecciones/03.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="handle/123456789/82">Universidad Austral de Chile</a></h3>
+                                                                          <!--<p>Colección: <a href="">umag</a></p> -->
+                                                                          <!--<p class="viewed">1500 Visitas</p> -->
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="themes/Responsive/images/colecciones/04.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="handle/123456789/37">Universidad de Chile</a></h3>
+                                                                          <!--<p>Colección: <a href="">umag</a></p>-->
+                                                                          <!--<p class="viewed">1500 Visitas</p> -->
+                                                                        </div>
+                                                                      </div>
+                                                                    </div> 
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="themes/Responsive/images/colecciones/05.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="handle/123456789/1">Universidad de Magallanes</a></h3>
+                                                                          <!--<p>Colección: <a href="">umag</a></p>-->
+                                                                          <!--<p class="viewed">1500 Visitas</p> -->
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>  
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="themes/Responsive/images/colecciones/06.jpg" alt="..."/>
+
+                                                                        <div class="caption">
+                                                                          <h3><a href="handle/123456789/81">Universidad de Santiago de Chile</a></h3>
+                                                                          <!--<p>Colección: <a href="">umag</a></p>-->
+                                                                          <!--<p class="viewed">1500 Visitas</p> -->
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>  
+                                                                    <!--<div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="https://c2.staticflickr.com/6/5806/20957610112_2861896a21_z.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="">Thumbnail label</a></h3>
+                                                                          <p>Colección: <a href="">umag</a></p>
+                                                                          <p class="viewed">1500 Visitas</p> 
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>  
+                                                                    <div class="col-sm-6 col-md-3">
+                                                                      <div class="thumbnail">
+                                                                        <img class="img-responsive" src="https://c2.staticflickr.com/6/5806/20957610112_2861896a21_z.jpg" alt="..."/>
+                                                                        <div class="caption">
+                                                                          <h3><a href="">Thumbnail label</a></h3>
+                                                                          <p>Colección: <a href="">umag</a></p>
+                                                                          <p class="viewed">1500 Visitas</p>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>-->                     
+
+                                                                  </div><!--/row--> 
+                                                                </div> <!--/End-content-colleciones--> 
                                                         </div>
-                                                </section>
+                                                </section><!--End-explore-->
+                                                
                                                 <section id="topics">
-                                                        <h2>Temas</h2>
-                                                        <div class="row">
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="collection.html">Link a la página de colecciones</a></h3>
-                                                                          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>   
+                                                  <h2>Temas</h2>
+                                                  <div class="row">
+                                                      <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                          <img class="img-responsive" src="themes/Responsive/images/temas/01.jpg" alt="..."/>
+                                                          <div class="caption">
+                                                            <h3><a href="collection.html">Link al tema</a></h3>
+                                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                                                          </div>
+                                                        </div>
+                                                      </div>   
 
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod magna. Cras fermentum est et nisl venenatis suscipit. Proin ultricies justo vel pellentesque commodo. Praesent in commodo urna. Phasellus lacus dui, venenatis in massa sed, congue consequat nisi. Phasellus mollis tempus diam, in sollicitudin sapien efficitur laoreet.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>
+                                                      <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                          <img class="img-responsive" src="themes/Responsive/images/temas/02.jpg" alt="..."/>
+                                                          <div class="caption">
+                                                            <h3><a href="">Link al Tema</a></h3>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod magna. Cras fermentum est et nisl venenatis suscipit. Proin ultricies justo vel pellentesque commodo. Praesent in commodo urna. Phasellus lacus dui, venenatis in massa sed, congue consequat nisi. Phasellus mollis tempus diam, in sollicitudin sapien efficitur laoreet.</p>
+                                                          </div>
+                                                        </div>
+                                                      </div>
 
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>   
+                                                      <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                          <img class="img-responsive" src="themes/Responsive/images/temas/03.jpg" alt="..."/>
+                                                          <div class="caption">
+                                                            <h3><a href="">Link al Tema</a></h3>
+                                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                          <img class="img-responsive" src="themes/Responsive/images/temas/04.jpg" alt="..."/>
+                                                          <div class="caption">
+                                                            <h3><a href="">Link al Tema</a></h3>
+                                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                                                          </div>
+                                                        </div>
+                                                      </div>   
 
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod magna. Cras fermentum est et nisl venenatis suscipit. Proin ultricies justo vel pellentesque commodo. Praesent in commodo urna. Phasellus lacus dui, venenatis in massa sed, congue consequat nisi. Phasellus mollis tempus diam, in sollicitudin sapien efficitur laoreet.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>
+                                                      <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                          <img class="img-responsive" src="themes/Responsive/images/temas/05.jpg" alt="..."/>
+                                                          <div class="caption">
+                                                            <h3><a href="">Link al Tema</a></h3>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod magna. Cras fermentum est et nisl venenatis suscipit. Proin ultricies justo vel pellentesque commodo. Praesent in commodo urna. Phasellus lacus dui, venenatis in massa sed, congue consequat nisi. Phasellus mollis tempus diam, in sollicitudin sapien efficitur laoreet.</p>
+                                                          </div>
+                                                        </div>
+                                                      </div>
 
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="col-sm-6 col-md-4">
-                                                                  <div class="thumbnail">
-                                                                        <img src="http://placehold.it/354x236/" alt="..."/>
-                                                                        <div class="caption">
-                                                                          <h3><a href="">Thumbnail label</a></h3>
-                                                                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod magna. Cras fermentum est et nisl venenatis suscipit. Proin ultricies justo vel pellentesque commodo. Praesent in commodo urna. Phasellus lacus dui, venenatis in massa sed, congue consequat nisi. Phasellus mollis tempus diam, in sollicitudin sapien efficitur laoreet.</p>
-                                                                        </div>
-                                                                  </div>
-                                                                </div>
-                                                        </div><!--/row-->
-                                                </section>
+                                                      <div class="col-sm-6 col-md-4">
+                                                        <div class="thumbnail">
+                                                          <img class="img-responsive" src="themes/Responsive/images/temas/06.jpg" alt="..."/>
+                                                          <div class="caption">
+                                                            <h3><a href="">Link al Tema</a></h3>
+                                                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                  </div><!--/row-->
+                                                </section><!--End-topics-->
 
                                                 <section class="sliderFeatured">
-                                                        <h2>Últimos enviós</h2>
-                                                        <div id="featured" class="carousel slide">
-                                                                <div class="carousel-inner">
-                                                                        <div class="item active">
-                                                                                <div class="row">
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide11"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="item">
-                                                                                <div class="row">
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                        <div class="item">
-                                                                                <div class="row">
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide31"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                        <div class="col-sm-6 col-md-3">
-                                                                                                <div class="thumbnail">
-                                                                                                  <img src="http://placehold.it/110x160/" alt="Slide21"/>
-                                                                                                  <div class="caption">
-                                                                                                        <h3><a href="">Product label</a></h3>
-                                                                                                  </div>
-                                                                                                </div>        
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                          <div class="carousel-controls">
-                                                                <a class="left carousel-control" href="#featured" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                                                                <a class="right carousel-control" href="#featured" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                                                          </div>
+                                                    <h2>Últimos envíos</h2>
+                                                    <xsl:apply-templates select="*[not(@n='comunity-browser')]" />
+                                                    <div id="featured" class="carousel slide">
+                                                            <div class="carousel-inner">
+                                                                    <div class="item active">
+                                                                            <div class="row">
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/01.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/02.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/03.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/04.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                            <div class="row">
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/05.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/06.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/07.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/08.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                            <div class="row">
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/09.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/10.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/11.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                                    <div class="col-sm-6 col-md-3">
+                                                                                            <div class="thumbnail">
+                                                                                              <img src="themes/Responsive/images/portadas_pdf/12.jpg" alt="Slide11"/>
+                                                                                              <div class="caption">
+                                                                                                    <h3><a href="handle/123456789/80">Lorem ipsum dolor sit amet</a></h3>
+                                                                                              </div>
+                                                                                            </div>        
+                                                                                    </div>
+                                                                            </div>
+                                                                    </div>
+                                                            </div>
+                                                      <div class="carousel-controls">
+                                                            <a class="left carousel-control" href="#featured" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                                            <a class="right carousel-control" href="#featured" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                                      </div>
 
-                                                                <ol class="carousel-indicators">
-                                                                        <li data-target="#featured" data-slide-to="0" class="active"></li>
-                                                                        <li data-target="#featured" data-slide-to="1" class=""></li>
-                                                                        <li data-target="#featured" data-slide-to="2" class=""></li>
-                                                                </ol>                
-                                                        </div><!-- End Carousel --> 
+                                                            <ol class="carousel-indicators">
+                                                                    <li data-target="#featured" data-slide-to="0" class="active"></li>
+                                                                    <li data-target="#featured" data-slide-to="1" class=""></li>
+                                                                    <li data-target="#featured" data-slide-to="2" class=""></li>
+                                                            </ol>                
+                                                    </div><!-- End Carousel --> 
                                                 </section>          
                                         </div><!--/.col-xs-12.col-sm-9-->
                                 </div><!--/row-->
@@ -1278,44 +1313,8 @@
                     <xsl:text>window.orcid.themePath= '</xsl:text><xsl:value-of select="$theme-path"/><xsl:text>';</xsl:text>
                 </script>
         <!-- INICIO COMENTARIO PRODIGIO - HCB - 15.10.2015 - Se agrega JS tema Prodigio -->       
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script type="text/javascript" src="/xmlui/themes/Responsive/lib/js/bootstrap.min.js"></script>
-
-        <script type="text/javascript">
-          $(document).ready(function() {
-            // grab the initial top offset of the navigation 
-              var stickyNavTop = $('.fixedSearch').offset().top;
-
-              // our function that decides weather the navigation bar should have "fixed" css position or not.
-              var stickyNav = function(){
-                var scrollTop = $(window).scrollTop(); // our current vertical position from the top
-
-                // if we've scrolled more than the navigation, change its position to fixed to stick to top,
-                // otherwise change it back to relative
-                if (scrollTop > stickyNavTop) { 
-                    $('.fixedSearch').addClass('sticky');
-                } else {
-                    $('.fixedSearch').removeClass('sticky'); 
-                }
-                if (scrollTop > stickyNavTop) { 
-                    $('.navbar').addClass('navbar-inverse');
-                } else {
-                    $('.navbar').removeClass('navbar-inverse'); 
-                }
-            };
-            stickyNav();
-            // and run it again every time you scroll
-            $(window).scroll(function() {
-              stickyNav();
-            });
-          });
-        </script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script type="text/javascript" src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script type="text/javascript" src="/xmlui/themes/Responsive/lib/js/offcanvas.js"></script>        
+        <script type="text/javascript" src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
         <!-- FIN COMENTARIO PRODIGIO -->
 
     </xsl:template>

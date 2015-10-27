@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy>true</netbeans.deploy>
+                <dspace.dir>C:/opt/install/dspace52</dspace.dir>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>dspace-solr</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>
